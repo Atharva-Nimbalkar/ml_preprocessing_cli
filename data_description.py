@@ -11,7 +11,18 @@ class DataDescription:
 
     def __init__(self, data):
         self.data = data
+
+    def showDataset(self):
+        print("\nHow many rows(>0) to print?")
+        rows=int(input())
+        print(self.data.head(rows))
+        return 
     
+    def showColumns(self):
+        for column in self.data.columns.values:
+            print(column, end="  ")
+        
+
     def heading(self,_heading):
         underline_byte=b'\xcc\xb2' # UTF-8 encoding for underline character '═' 
         underline=str(underline_byte,'') # Decoding byte to string
@@ -31,12 +42,9 @@ class DataDescription:
             if taskNo==0:
                 break
             elif taskNo==1:
-                print("\n How many rows (>0) to print?")
-                rows=int(input())
-                print(self.data.head(rows))
+               self.showDataset()
             elif taskNo==2:
-                for column in self.data.columns.values:
-                    print(column, end="  ")
+                self.showColumns()
                 print("\n\nWhich Column?(Write full name(Don't ignore the case) of the column)")
                 describeColumn = input()
                 print(self.data[describeColumn].describe())
