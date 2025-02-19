@@ -1,6 +1,8 @@
 from data_description import DataDescription
 from data_input import dataInput
 from imputation import Imputation
+from download import Download
+
 class Preprocessor:
     tasks = [
         '1. About Data',
@@ -11,12 +13,28 @@ class Preprocessor:
     data = dataInput().Input()
 
     def __init__(self):
-        print("Welcome!!!")
+        print("\n\nWELCOME TO THE MACHINE LEARNING PREPROCESSOR CLI!!!\n\n")
     
+    def removeTargetColumn(self):
+        print("Columns:\n")
+        for column in self.data.columns.values:
+            print(column, end = "  ")
+
+        while(1):
+            column = input("\nWhich is the target variable:  ")
+            choice = input("Are you sure?(y/n) ")
+            if choice=="y" or choice=="Y":
+                self.data.drop([column], axis = 1, inplace = True)
+                print("Done.......")
+                break
+            else:
+                print("Try again with the correct column name..")
+        return
     def printData(self):
         # print(self.inputData())
         print(self.data)
-    def whileLoop(self):
+    def preprocessorMain(self):
+        self.removeTargetColumn()
         while(1):
             print("\nWhat to do")
             for task in self.tasks:
@@ -33,7 +51,11 @@ class Preprocessor:
             elif choice==2:
                # Imputation(self.inputData())
                Imputation(self.data).whileLoop()
+            
+            elif choice==3:
+                Download(self.data).download()  
 #if __name__ == "__main__ ":
 obj = Preprocessor()
 # print(obj.inputData())
 #print(obj.printData())
+obj.preprocessorMain()
