@@ -6,15 +6,15 @@ class DataDescription:
     tasks=[
         '\n1. Print Table',
         '2. Describe a specific Column',
-        '3. Show Numeric Properties of Each Column'
+        '3. Show Properties of Each Column'
     ]
 
     def __init__(self, data):
         self.data = data
 
     def showDataset(self):
-        print("\nHow many rows(>0) to print?")
-        rows=int(input())
+        # print("\nHow many rows(>0) to print?")
+        rows=int(input(("\nHow many rows(>0) to print?  ")))
         print(self.data.head(rows))
         return 
     
@@ -37,19 +37,21 @@ class DataDescription:
             for task in self.tasks:
                 print(task)
             
-            print("\nwhat you want to see(Press 0 to exit):")
-            taskNo=int(input())
+            # print("\nwhat you want to see(Press 0 to exit):")
+            taskNo=int(input("\n\nWhat you want to see? (Press 0 to go back)  "))
             if taskNo==0:
                 break
             elif taskNo==1:
                self.showDataset()
             elif taskNo==2:
                 self.showColumns()
-                print("\n\nWhich Column?(Write full name(Don't ignore the case) of the column)")
-                describeColumn = input()
+                # print("\n\nWhich Column?(Write full name(Don't ignore the case) of the column)")
+                describeColumn = input("\n\nWhich Column?(Write full name(Don't ignore the case) of the column)  ")
                 print(self.data[describeColumn].describe())
             elif taskNo==3:
                 print(self.data.describe())
+                print("\n\n")
+                print(self.data.info())
             else:
                 print("You pressed the wrong key. Try again!!")
 

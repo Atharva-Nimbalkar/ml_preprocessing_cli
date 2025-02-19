@@ -29,11 +29,11 @@ class Imputation:
         print("")
         return
     def removeColumn(self):
-        print("\nWhich column you want to delete?")
+        # print("\nWhich column you want to delete?")
         self.showColumns()
-        column = input()
-        print("Are you sure?(y/n)")
-        if input()=="y" or input()=="Y":
+        column = input("\nWhich column you want to delete?  ")
+        choice = input("Are you sure?(y/n) ")
+        if choice=="y" or choice=="Y":
             self.data.drop([column], axis = 1, inplace = True)
             print("Done.......")
         else:
@@ -41,27 +41,37 @@ class Imputation:
         return
     
     def fillNullWithMean(self):
-        print("\nEnter the column's name:")
+        # print("\nEnter the column's name:")
         self.showColumns()
-        column = input()
-        print("Are you sure? (y/n)")
-        if input()=="y" or input()=='Y':
+        column = input("\nEnter the column's name:  ")
+        choice = input("Are you sure? (y/n)  ")
+        if choice=="y" or choice=='Y':
             self.data[column] = self.data[column].fillna(self.data[column].mean())
             print("Done......")
         else:
             print("Not changing........")
         return
     def fillNullWithMedian(self):
-        print("\nEnter the column's name:")
+        # print("\nEnter the column's name:")
         self.showColumns()
-        column = input()
-        self.data[column] = self.data[column].fillna(self.data[column].median())
+        column = input("\nEnter the column's name:  ")
+        choice = input("Are you sure? (y/n)  ")
+        if choice=="y" or choice=='Y':
+            self.data[column] = self.data[column].fillna(self.data[column].median())
+            print("Done......")
+        else:
+            print("Not changing........")
         return
     def fillNullWithMode(self):
-        print("\nEnter the column's name:")
+        # print("\nEnter the column's name:")
         self.showColumns()
-        column = input()
-        self.data[column] = self.data[column].fillna(self.data[column].mode()[0])
+        column = input("\nEnter the column's name:  ")
+        choice = input("Are you sure? (y/n)  ")
+        if choice=="y" or choice=='Y':
+            self.data[column] = self.data[column].fillna(self.data[column].mean()[0])
+            print("Done......")
+        else:
+            print("Not changing........")
         return
     def whileLoop(self):
 #        self.printNullValues()
@@ -69,8 +79,8 @@ class Imputation:
             print("\nWhat to do now?")
             for task in self.tasks:
                 print(task)
-            print("\nEnter your Choice : (Press 0 to go back)")
-            choice = int(input())
+            # print("\nEnter your Choice : (Press 0 to go back)")
+            choice = int(input("\nEnter your Choice : (Press 0 to go back)  "))
             if choice == 0:
                 break
             elif choice==1:
@@ -94,4 +104,4 @@ class Imputation:
                 DataDescription.showDataset(self)
             
             else:
-                print("\nYou pressed the wrong key")
+                print("\nYou pressed the wrong key  Try again..")

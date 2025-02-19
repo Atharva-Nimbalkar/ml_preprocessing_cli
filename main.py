@@ -5,6 +5,7 @@ class Preprocessor:
     tasks = [
         '1. About Data',
         '2. Handling null Values',
+        '3. Download the modified dataset'
     ]
     
     data = dataInput().Input()
@@ -20,19 +21,18 @@ class Preprocessor:
             print("\nWhat to do")
             for task in self.tasks:
                 print(task)
-            print("\nEnter your Choice : (Press 0 to go back)")
-            choice = int(input())
+            choice = int(input("\nEnter your Choice : (Press 0 to go exit)  "))
             if choice == 0:
                 exit()
             elif choice==1:
                 data_obj = DataDescription(self.data)
                 data_obj.describe()
-#                self.printData()
+#               self.printData()
+                DataDescription(self.data).describe()
+            
             elif choice==2:
-                # Imputation(self.inputData())
-                imputation_obj = Imputation(self.data)
-                imputation_obj.whileLoop()
-                
+               # Imputation(self.inputData())
+               Imputation(self.data).whileLoop()
 #if __name__ == "__main__ ":
 obj = Preprocessor()
 # print(obj.inputData())
